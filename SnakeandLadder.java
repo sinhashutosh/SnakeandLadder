@@ -5,7 +5,7 @@ import java.util.Random;
 public class SnakeandLadder {
     public static void main(String[] args) {
         System.out.println("Welcome to the Snake and Ladder Game");
-        //int counter = 0;
+        int counter = 0;
         int previous_position;
         int player_position = 0;
         int temp_position_ladder;
@@ -32,12 +32,12 @@ public class SnakeandLadder {
             if (temp_position_snake != 0) {
                 player_position = temp_position_snake;
             }
-            //counter++;
-            //System.out.println("Counter =" + counter);
+            counter++;
+//            System.out.println("Dice was played =" + counter+"times");
             /////////////////
-            result(player_position);
+            result(player_position, counter);
         }
-        System.out.println("=========================================================\n");
+
     }
 
     public static int dice_roll() {
@@ -123,11 +123,14 @@ public class SnakeandLadder {
         return playerposition;
     }
 
-    static void result(int a) {
-        int b = a;
-        if (b == 100) {
+    static void result(int a, int b) {
+        int x = a;
+        int y = b;
+        if (x == 100) {
             System.out.println("=========================================================\n");
             System.out.println("Finally You Won...");
+            System.out.println("=========================================================\n");
+            System.out.println("Dice was played =" + y + " times");
             System.exit(0);
         }
     }
