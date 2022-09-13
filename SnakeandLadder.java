@@ -5,16 +5,21 @@ import java.util.Random;
 public class SnakeandLadder {
     public static void main(String[] args) {
         System.out.println("Welcome to the Snake and Ladder Game");
-        int counter = 0;
+        //int counter = 0;
+        int previous_position;
         int player_position = 0;
         int temp_position_ladder;
         int temp_position_snake;
         int dice;
         System.out.println("Starting Position of Player = " + player_position);
         System.out.println("=========================================================\n");
-        while (player_position <= 100) {
+        while (player_position < 101) {
             dice = dice_roll();
+            previous_position = player_position;
+            //System.out.println("Previous Position " + previous_position);
             player_position += dice;
+            player_position = checkposition(previous_position, player_position);
+            /////////////////////////////////////////////////////
             System.out.println(dice + " comes");
             System.out.println("player position " + player_position);
             temp_position_ladder = ladder(player_position);
@@ -27,8 +32,10 @@ public class SnakeandLadder {
             if (temp_position_snake != 0) {
                 player_position = temp_position_snake;
             }
-            counter++;
-            System.out.println("Counter =" + counter);
+            //counter++;
+            //System.out.println("Counter =" + counter);
+            /////////////////
+            result(player_position);
         }
         System.out.println("=========================================================\n");
     }
@@ -104,5 +111,24 @@ public class SnakeandLadder {
                 break;
         }
         return ladder;
+    }
+
+    static int checkposition(int a, int b) {
+        int position = a;
+        int playerposition = b;
+        if (playerposition > 100) {
+            playerposition = position;
+            System.out.println("its working " + playerposition);
+        }
+        return playerposition;
+    }
+
+    static void result(int a) {
+        int b = a;
+        if (b == 100) {
+            System.out.println("=========================================================\n");
+            System.out.println("Finally You Won...");
+            System.exit(0);
+        }
     }
 }
